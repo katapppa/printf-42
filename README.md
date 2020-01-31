@@ -1,2 +1,2 @@
-# printf-42
-prentf 21
+
+Because i’m tired of using putnbr and putstr.
