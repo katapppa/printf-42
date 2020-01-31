@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 15:38:25 by cgamora           #+#    #+#             */
-/*   Updated: 2020/01/31 19:32:47 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/01/31 19:37:30 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int		ft_printf(const char* format, ...)
             {
                 ft_putstr(va_arg(factor, void*));
             }
+            if(*c=='%')
+                write(1, "%", 1);
         }
         c++;
     }
@@ -58,7 +60,7 @@ int     main(void)
     int *ptr;
     int a = 44;
     ptr = &a;
-    ft_printf("Vivodim chislo = %d\nVivodim bukvu = %c\nVivodim stroku = %s\nVivodim chislo = %i\n%p",24,'a',"asdasd",244,*ptr);
+    ft_printf("Vivodim chislo = %d\nVivodim bukvu = %c\nVivodim stroku = %s\nVivodim chislo = %i\n%p\n%%",24,'a',"asdasd",244,ptr);
     //printf("if %d    %c  %d",'a',234,'a');
     //printf("\033[1;31m3dasd \033[0m;");
     //write(1, "\033[22;34m", 8);
