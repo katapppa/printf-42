@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 15:38:25 by cgamora           #+#    #+#             */
-/*   Updated: 2020/01/31 19:37:30 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/02/01 19:29:27 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,28 @@ int		ft_printf(const char* format, ...)
             {
                 ft_putstr(va_arg(factor, char*));
             }
-            if(*c=='p')
+            // if(*c=='p')
+            // {
+            //     ft_putstr(va_arg(factor, void*));
+            // }
+            if(*c=='o')
             {
-                ft_putstr(va_arg(factor, void*));
+                ft_putstr(ft_itoa(ft_toeight(va_arg(factor,int))));
+            }
+            if(*c=='u')
+            {
+                if(va_arg(factor,int)>=0)
+                    ft_putstr(ft_itoa(va_arg(factor, int)));
+                else
+                    ft_putstr(ft_itoa(4294967295+va_arg(factor,int)));           
+            }
+            if(*c=='x')
+            {
+                ft_putstr(ft_tosix(va_arg(factor, int)));
+            }
+            if(*c=='X')
+            {
+                ft_putstr(ft_strupper(ft_tosix(va_arg(factor, int))));
             }
             if(*c=='%')
                 write(1, "%", 1);
@@ -60,7 +79,16 @@ int     main(void)
     int *ptr;
     int a = 44;
     ptr = &a;
-    ft_printf("Vivodim chislo = %d\nVivodim bukvu = %c\nVivodim stroku = %s\nVivodim chislo = %i\n%p\n%%",24,'a',"asdasd",244,ptr);
+    ft_printf("Vivodim chislo = %d\nVivodim bukvu = %c\nVivodim stroku = %s\nVivodim chislo = %i\n\n",24,'a',"asdasd",244);
+    ft_printf("FLag %%o = %o",34);  
+    ft_printf("FLag %%u = %u",-34);
+    ft_printf("\n\nFLag %%x = %x",34);
+    ft_printf("\nFLag %%X = %X",34);
+    printf("\n%x",34);
+    printf("\n%X",34);
+    printf("\n\n%p",&ptr);
+    printf("\n%o",-34);
+    printf("\n%u",-34);
     //printf("if %d    %c  %d",'a',234,'a');
     //printf("\033[1;31m3dasd \033[0m;");
     //write(1, "\033[22;34m", 8);
