@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 15:38:25 by cgamora           #+#    #+#             */
-/*   Updated: 2020/02/01 19:29:27 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/02/02 16:15:35 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ int		ft_printf(const char* format, ...)
     c = (char *)format;
     while(*c)
     {
+        if(*c=='{' && *(c+2)=='}')
+        {
+            c++;
+            ft_color(ft_atoi(c));
+            c+=2;
+        }
         if(*c!='%')
             write(1, c, 1);
         if(*c=='%')
@@ -84,11 +90,13 @@ int     main(void)
     ft_printf("FLag %%u = %u",-34);
     ft_printf("\n\nFLag %%x = %x",34);
     ft_printf("\nFLag %%X = %X",34);
+    ft_printf("\nasldalsd{1}fdasdasdsdssada{7}sadads{0}fin");
     printf("\n%x",34);
     printf("\n%X",34);
     printf("\n\n%p",&ptr);
     printf("\n%o",-34);
     printf("\n%u",-34);
+    //printf("\n%h",33);
     //printf("if %d    %c  %d",'a',234,'a');
     //printf("\033[1;31m3dasd \033[0m;");
     //write(1, "\033[22;34m", 8);

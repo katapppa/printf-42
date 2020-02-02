@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   pars_col.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/31 18:51:03 by cgamora           #+#    #+#             */
-/*   Updated: 2020/02/02 15:49:06 by cgamora          ###   ########.fr       */
+/*   Created: 2020/02/02 15:23:13 by cgamora           #+#    #+#             */
+/*   Updated: 2020/02/02 16:15:18 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include "libft/libft.h"
-# include <stdio.h>
-# include <unistd.h>
-# include <stdarg.h>
-# include <float.h>
-# include <stdlib.h>
-
-int     ft_toeight(int chislo);
-int     ft_sizenbr(int namba);
-int     ft_tosixm(int chislo);
-char    *ft_tosix(int chislo);
-char    *ft_strupper(char *str);
-void    ft_color(int a);
-
-#endif
+void    ft_color(int a)
+{
+    if(a==1)
+        write(1, "\x1b[31m", 5);
+    if(a==2)
+        write(1, "\x1b[32m", 5);
+    if(a==3)
+        write(1, "\x1b[33m", 5);
+    if(a==4)
+        write(1, "\x1b[34m", 5);
+    if(a==5)
+        write(1, "\x1b[35m", 5);
+    if(a==6)
+        write(1, "\x1b[36m", 5);
+    if(a==0)
+        write(1, "\x1b[0m",4);
+}
