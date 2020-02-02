@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 18:51:03 by cgamora           #+#    #+#             */
-/*   Updated: 2020/02/02 15:49:06 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/02/02 18:41:29 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,22 @@
 # include <float.h>
 # include <stdlib.h>
 
+typedef struct  s_par
+{
+    int     plus;
+    int     min;
+    int     hesh;
+    int     prob;
+    int     chislo;
+    int     zero;
+}               t_par;
+
 int     ft_toeight(int chislo);
 int     ft_sizenbr(int namba);
 int     ft_tosixm(int chislo);
 char    *ft_tosix(int chislo);
 char    *ft_strupper(char *str);
 void    ft_color(int a);
+int     ft_binar(int chislo);
 
 #endif

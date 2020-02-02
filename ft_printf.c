@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 15:38:25 by cgamora           #+#    #+#             */
-/*   Updated: 2020/02/02 16:15:35 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/02/02 18:20:38 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int		ft_printf(const char* format, ...)
             {
                 ft_putstr(ft_itoa(ft_toeight(va_arg(factor,int))));
             }
+            if(*c=='b')
+                ft_putstr(ft_itoa(ft_binar(va_arg(factor,int))));
             if(*c=='u')
             {
                 if(va_arg(factor,int)>=0)
@@ -85,12 +87,13 @@ int     main(void)
     int *ptr;
     int a = 44;
     ptr = &a;
-    ft_printf("Vivodim chislo = %d\nVivodim bukvu = %c\nVivodim stroku = %s\nVivodim chislo = %i\n\n",24,'a',"asdasd",244);
+    ft_printf("Vivodim chislo = %d\nVivodim bukvu = %c\nVivodim stroku = %s\nVivodim chislo = %i\n\n",-2147483649,'a',"asdasd",244);
     ft_printf("FLag %%o = %o",34);  
     ft_printf("FLag %%u = %u",-34);
     ft_printf("\n\nFLag %%x = %x",34);
     ft_printf("\nFLag %%X = %X",34);
     ft_printf("\nasldalsd{1}fdasdasdsdssada{7}sadads{0}fin");
+    ft_printf("\n\n%b",992);
     printf("\n%x",34);
     printf("\n%X",34);
     printf("\n\n%p",&ptr);
@@ -98,11 +101,6 @@ int     main(void)
     printf("\n%u",-34);
     //printf("\n%h",33);
     //printf("if %d    %c  %d",'a',234,'a');
-    //printf("\033[1;31m3dasd \033[0m;");
-    //write(1, "\033[22;34m", 8);
-    //write(1, "A \n", 3);
-    //write(1, "\033[0m", 4);
-    //write(1, "a", 1);
     //printf("%d",system("date +%s"));
     // daa = printf("%d",popen("date +%s", "r"));
     // printf("%d",daa);
