@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 15:38:25 by cgamora           #+#    #+#             */
-/*   Updated: 2020/02/02 18:20:38 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/02/04 15:27:17 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int		ft_printf(const char* format, ...)
 	int     	cg;
     va_list 	factor;
     va_start(factor, format);
+    printf("%d",va_arg(factor, int));
 
     c = (char *)format;
     while(*c)
@@ -35,6 +36,11 @@ int		ft_printf(const char* format, ...)
         if(*c=='%')
         {
             c++;
+            while((*c <'a' || *c > 'z') && (*c < 'A' || *c > 'Z'))
+            {
+                ft_checks(*c);
+                c++;
+            }
             if(*c=='c')
             {
                 b = va_arg(factor, int);
@@ -87,12 +93,12 @@ int     main(void)
     int *ptr;
     int a = 44;
     ptr = &a;
-    ft_printf("Vivodim chislo = %d\nVivodim bukvu = %c\nVivodim stroku = %s\nVivodim chislo = %i\n\n",-2147483649,'a',"asdasd",244);
+    ft_printf("Vivodim chislo = %032d\nVivodim bukvu = %c\nVivodim stroku = %s\nVivodim chislo = %i\n\n",-2147483649,'a',"asdasd",244);
     ft_printf("FLag %%o = %o",34);  
     ft_printf("FLag %%u = %u",-34);
     ft_printf("\n\nFLag %%x = %x",34);
     ft_printf("\nFLag %%X = %X",34);
-    ft_printf("\nasldalsd{1}fdasdasdsdssada{7}sadads{0}fin");
+    ft_printf("\nasldalsd{1}fdasdasdsdssada{7}sa{2}dadsfin");
     ft_printf("\n\n%b",992);
     printf("\n%x",34);
     printf("\n%X",34);

@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 15:23:13 by cgamora           #+#    #+#             */
-/*   Updated: 2020/02/02 19:20:53 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/02/03 17:04:12 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,31 @@ t_par       *ft_struc()
     return (new);
 }
 
-int     ft_checks(char c)
+void     ft_checks(char c)
 {
     t_par   *head;
     head = ft_struc();
+    int i;
     
-    //if(c=='')
+    if(c=='+')
+        head->plus = 1;
+    if(c=='-')
+        head->min = 1;
+    if(c=='#')
+        head->hesh = 1;
+    if(c=='0')
+        head->zero = 1;
+    if(c==' ')
+        head->prob = 1;
+    if(c > '0' && c <= '9')
+    {
+        head->chislo = head->chislo + (ft_atoi(&c) * i);
+        i*=10;
+    }
+    printf("\n%d\n",head->plus);
+    printf("%d\n",head->min);
+    printf("%d\n",head->hesh);
+    printf("%d\n",head->zero);
+    printf("%d\n",head->prob);
+    printf("%d\n",head->chislo);
 }

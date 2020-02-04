@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 18:51:03 by cgamora           #+#    #+#             */
-/*   Updated: 2020/02/02 18:41:29 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/02/03 15:34:32 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ char    *ft_tosix(int chislo);
 char    *ft_strupper(char *str);
 void    ft_color(int a);
 int     ft_binar(int chislo);
+void    ft_checks(char c);
 
 #endif
