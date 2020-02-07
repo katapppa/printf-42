@@ -29,3 +29,9 @@ void     ft_date(int i)
     ft_putstr(ft_itoa(i));
     ft_putstr("\n");
 }
+    // while(n > 0)
+    // {
+    //     k++;
+    //     n -= 86400;
+    // }
+    //     n += 86400;

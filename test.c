@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/07 16:06:57 by cgamora           #+#    #+#             */
+/*   Updated: 2020/02/07 16:07:03 by cgamora          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int     ft_month(int ost, int flag)
@@ -58,22 +70,41 @@ int     ft_day(int day, int flag)
     return (0);
 }
 
+void    ft_date_print(int i, int n)
+{
+    int k;
+
+    k = 0;
+    ft_putstr(ft_itoa(i+1970));
+    ft_putstr(ft_month(n,(1970+i)%4==0?1:0)<10?"-0":"-");
+    ft_putstr(ft_itoa(ft_month(n,(1970+i)%4==0?1:0)));
+    k = 1;
+    k += n/86400;
+    n = n%86400;
+    ft_putstr(ft_day(k,(1970+i)%4==0?1:0)<10?"-0":"-");
+    ft_putstr(ft_itoa(ft_day(k,(1970+i)%4==0?1:0)));
+    ft_putstr((n/3600)>=10?"T":"T0");    
+    ft_putstr(ft_itoa(n/3600));
+    n  -= (n/3600) * 3600;
+    ft_putstr((n/60)<10?":0":":");
+    ft_putstr(ft_itoa(n/60));
+    n -= (n/60) * 60;
+    ft_putstr((n)<10?":0":":");
+    ft_putstr(ft_itoa(n));
+    ft_putchar('\n');
+}
+
 void ft_date(int n)
 {
     int i;
-    int k = 0;
-    int l = 0;
+    int k;
 
     i = -2;
     n += 31536000;
     while (n >= 0)
     {
-        if (n >= 0)
-        {
-            n -= 31536000;
-            i++;
-            k++;
-        }
+        n -= 31536000;
+        i++;
         if (n >= 0)
         {
             n -= 31536000;
@@ -88,34 +119,10 @@ void ft_date(int n)
         {
             n -= 31622400;
             i++;
-            l++;
         }
     }
-    if(k==l)
-        n += 31622400;
-    else
-        n += 31536000;
-    ft_putstr(ft_itoa(i+1970));
-    ft_putstr(ft_month(n,(1970+i)%4==0?1:0)<10?"-0":"-");
-    ft_putstr(ft_itoa(ft_month(n,(1970+i)%4==0?1:0)));
-    k = 0;
-    while(n > 0)
-    {
-        k++;
-        n -= 86400;
-    }
-        n += 86400;
-    ft_putstr(ft_day(k,(1970+i)%4==0?1:0)<10?"-0":"-");
-    ft_putstr(ft_itoa(ft_day(k,(1970+i)%4==0?1:0)));
-    ft_putstr((n/3600)>=10?"T":"T0");    
-    ft_putstr(ft_itoa(n/3600));
-    n  -= (n/3600) * 3600;
-    ft_putstr((n/60)<10?":0":":");
-    ft_putstr(ft_itoa(n/60));
-    n -= (n/60) * 60;
-    ft_putstr((n)<10?":0":":");
-    ft_putstr(ft_itoa(n));
-    ft_putchar('\n');
+    n += ((i+2)%4==0)?31622400:31536000;
+    ft_date_print(i, n);
 }
 
 int     ft_printf(const char* format,...)
@@ -158,6 +165,7 @@ int     main()
     ft_date(1538318064);
     ft_date(1543588464);
     ft_date(1546246922);
+    ft_date(921293782);
     //printf("\n%d%d%d%2$d\n",34,42,21);
     // printf("%5d\n",44);
     // printf("%.2d\n",44);
