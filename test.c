@@ -61,66 +61,61 @@ int     ft_day(int day, int flag)
 void ft_date(int n)
 {
     int i;
-    int day;
-    int month;
-    int hour;
-    int min;
-    int k = 0,l = 0;
+    int k = 0;
+    int l = 0;
 
-    i = 0;
-    day = 0;
-    while (n > 0)
+    i = -2;
+    n += 31536000;
+    while (n >= 0)
     {
-        if (n > 0)
+        if (n >= 0)
         {
             n -= 31536000;
             i++;
             k++;
         }
-        if (n > 0)
+        if (n >= 0)
         {
             n -= 31536000;
             i++;
         }
-        if (n > 0)
+        if (n >= 0)
         {
             n -= 31536000;
             i++;
         }
-        if (n > 0)
+        if (n >= 0)
         {
             n -= 31622400;
             i++;
             l++;
         }
     }
-    
     if(k==l)
         n += 31622400;
     else
         n += 31536000;
-    i -= 2;
-    month = 0;
-    month = ft_month(n,(1970+i)%4==0?1:0);
+    ft_putstr(ft_itoa(i+1970));
+    ft_putstr(ft_month(n,(1970+i)%4==0?1:0)<10?"-0":"-");
+    ft_putstr(ft_itoa(ft_month(n,(1970+i)%4==0?1:0)));
+    k = 0;
     while(n > 0)
     {
-        day++;
+        k++;
         n -= 86400;
     }
         n += 86400;
-    day = ft_day(day,(1970+i)%4==0?1:0);
-    hour = 0;
-    hour = n/3600;
-    n  -= hour * 3600;
-    min = 0;
-    min = n/60;
-    n -= min * 60;
-    printf("\nGOD: %d OST: %d",i + 1970,n);
-    printf("\nMONTH: %d",month);
-    printf("\nDAY: %d\n", day);
-    printf("HOUR: %d",hour);
-    printf("\nMINUTS: %d",min);
-    printf("\nSEC: %d",n);
+    ft_putstr(ft_day(k,(1970+i)%4==0?1:0)<10?"-0":"-");
+    ft_putstr(ft_itoa(ft_day(k,(1970+i)%4==0?1:0)));
+    ft_putstr((n/3600)>=10?"T":"T0");    
+    ft_putstr(ft_itoa(n/3600));
+    n  -= (n/3600) * 3600;
+    ft_putstr((n/60)<10?":0":":");
+    ft_putstr(ft_itoa(n/60));
+    n -= (n/60) * 60;
+    ft_putstr((n)<10?":0":":");
+    ft_putstr(ft_itoa(n));
+    ft_putchar('\n');
 }
 
 int     ft_printf(const char* format,...)
@@ -157,7 +152,12 @@ int     main()
     char c = '3';
     // ft_printf("%d%d%d%d",40,0,42,49,44);
     // printf("%'i",32423423);
-    ft_date(704712733);
+    ft_date(1581073012);
+    ft_date(1585652188);
+    ft_date(1588244188);
+    ft_date(1538318064);
+    ft_date(1543588464);
+    ft_date(1546246922);
     //printf("\n%d%d%d%2$d\n",34,42,21);
     // printf("%5d\n",44);
     // printf("%.2d\n",44);
