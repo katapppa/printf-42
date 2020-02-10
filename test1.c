@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 16:09:38 by cgamora           #+#    #+#             */
-/*   Updated: 2020/02/07 16:37:48 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/02/10 21:00:20 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,32 +70,65 @@ int		ft_day(int day, int flag)
 	return (0);
 }
 
-void	ft_date_print(int i, int n)
+int		ft_dayen(int n, int i)
 {
 	int k;
 
-	k = 0;
-	n += ((i + 2) % 4 == 0) ? 31622400 : 31536000;
-	ft_putstr(ft_itoa(i + 1970));
-	ft_putstr(ft_month(n, (1970 + i) % 4 == 0 ? 1 : 0) < 10 ? "-0" : "-");
-	ft_putstr(ft_itoa(ft_month(n, (1970 + i) % 4 == 0 ? 1 : 0)));
 	k = 1;
 	k += n / 86400;
-	n = n % 86400;
-	ft_putstr(ft_day(k, (1970 + i) % 4 == 0 ? 1 : 0) < 10 ? "-0" : "-");
-	ft_putstr(ft_itoa(ft_day(k, (1970 + i) % 4 == 0 ? 1 : 0)));
-	ft_putstr((n / 3600) >= 10 ? "T" : "T0");
-	ft_putstr(ft_itoa(n / 3600));
-	n -= (n / 3600) * 3600;
-	ft_putstr((n / 60) < 10 ? ":0" : ":");
-	ft_putstr(ft_itoa(n / 60));
-	n -= (n / 60) * 60;
-	ft_putstr((n) < 10 ? ":0" : ":");
-	ft_putstr(ft_itoa(n));
-	ft_putchar('\n');
+	return(ft_day(k, (i + 1970) % 4 == 0 ? 1 : 0));	
 }
 
-void	ft_date(int n)
+char	*ft_date_print(int i, int n)
+{
+	char str[20];
+
+	n += ((i + 2) % 4 == 0) ? 31622400 : 31536000;
+	str[0] = ((i + 1970) / 1000) + '0';
+	str[1] = ((i + 1970) /100)%10 + '0';
+	str[2] = ((i + 1970) /10)%10 + '0';
+	str[3] = ((i + 1970) %10) + '0';
+	str[4] = '-';
+	str[5] = (ft_month(n, (1970 + i) % 4 == 0 ? 1 : 0) / 10) + '0';
+	str[6] = (ft_month(n, (1970 + i) % 4 == 0 ? 1 : 0) % 10) + '0';
+	str[7] = '-';
+	str[8] = ((ft_dayen(n,i)) / 10) + '0';
+	str[9] = ((ft_dayen(n,i)) % 10) + '0';
+	str[10] = 'T';
+	n = n % 86400;
+	str[11] = (n / 3600) / 10 + '0';
+	str[12] = (n / 3600) % 10 + '0';
+	str[13] = ':';
+	n -= (n / 3600) * 3600;
+	str[14] = (n / 60) / 10 + '0';
+	str[15] = (n / 60) % 10 + '0';
+	str[16] = ':';
+	n -= (n / 60) * 60;
+	str[17] = n / 10 + '0';
+	str[18] = n % 10 + '0';
+	str[19] = '\0';
+	return(&str);
+	// ft_putstr(ft_itoa(i + 1970));
+	// ft_putstr(ft_month(n, (1970 + i) % 4 == 0 ? 1 : 0) < 10 ? "-0" : "-");
+	// ft_putstr(ft_itoa(ft_month(n, (1970 + i) % 4 == 0 ? 1 : 0)));
+	// k = 1;
+	// k += n / 86400;
+	// n = n % 86400;
+	// ft_putstr(ft_day(k, (1970 + i) % 4 == 0 ? 1 : 0) < 10 ? "-0" : "-");
+	// ft_putstr(ft_itoa(ft_day(k, (1970 + i) % 4 == 0 ? 1 : 0)));
+	// ft_putstr((n / 3600) >= 10 ? "T" : "T0");
+	// ft_putstr(ft_itoa(n / 3600));
+	// n -= (n / 3600) * 3600;
+	// ft_putstr((n / 60) < 10 ? ":0" : ":");
+
+	// ft_putstr(ft_itoa(n / 60));
+	// n -= (n / 60) * 60;
+	// ft_putstr((n) < 10 ? ":0" : ":");
+	// ft_putstr(ft_itoa(n));
+	// ft_putchar('\n');
+}
+
+char	ft_date(int n)
 {
 	int i;
 
@@ -121,7 +154,7 @@ void	ft_date(int n)
 			i++;
 		}
 	}
-	ft_date_print(i, n);
+	return(ft_date_print(i, n));
 }
 
 int		main(void)
