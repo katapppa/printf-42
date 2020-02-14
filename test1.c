@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 16:09:38 by cgamora           #+#    #+#             */
-/*   Updated: 2020/02/13 17:29:59 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/02/13 19:30:06 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,7 @@ int		ft_printk(int c)
 
 int		main(void)
 {
+
 	ft_printk(1581073012);
 	ft_printk(1585652188);
 	ft_printk(1588244188);
@@ -156,5 +157,7 @@ int		main(void)
 	ft_printk(1543588464);
 	ft_printk(1546246922);
 	ft_printk(921293782);
-	ft_printk(-2147483648);
+	ft_printk(2047483640);
+	//printf("\n%43.214744d =treytrte roflan",222);
+	printf("\n%d",ft_isalpha());
 }

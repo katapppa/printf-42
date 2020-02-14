@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 16:06:57 by cgamora           #+#    #+#             */
-/*   Updated: 2020/02/07 17:00:52 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/02/13 20:05:36 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,50 @@ int     main()
     // printf("%d",system("date +%s"));
     
     return 1;
+}
+
+
+int     check_flags(t_printf *pf, int i)
+{
+    int c;
+    int flag;
+    char *str;
+    char *str1;
+
+    flag = 0;
+    i++;
+    c = i;
+    str = "diouxXcspfFt";
+    str1 = "di"
+    while(!ft_isalpha(pf->format[i]))
+    {
+        if (pf->format[i] == '+' || pf->format[i] == '-')
+            c++;
+        if (pf->format[i] >= '0' && pf->format[i] <= '9')
+            c++;
+        if (pf->format[i] == '.' || pf->format[i] == '#')
+            c++;
+        if (c == i)
+            return 0;
+        i++;
+    }
+    c = 0;
+    while (ft_isalpha(pf->format[i]))
+    {
+        if (str[c] == pf->format[i])
+            flag++;
+        if (pf->format[i] == 'l')
+        {
+            i++;
+            if (str1[c] == pf->format[i])
+                flag++;
+            if ('l' == pf->format[i])
+            {
+                i++;
+                if (str1[c] == pf->format[i])
+                    flag++;
+            }
+        }
+        c++;
+    }
 }
